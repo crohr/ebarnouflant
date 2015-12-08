@@ -43,6 +43,7 @@ GEM
     builder (3.2.2)
     byebug (8.2.1)
     concurrent-ruby (1.0.0)
+    dalli (2.7.4)
     debug_inspector (0.0.2)
     dotenv (2.0.2)
     dotenv-rails (2.0.2)
@@ -132,6 +133,7 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
+  dalli
   dotenv-rails
   octokit
   rails (= 4.2.1)

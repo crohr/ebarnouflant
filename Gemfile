@@ -5,6 +5,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'octokit'
 gem 'dotenv-rails'
+gem 'dalli'
 
 group :development, :test do
   gem 'byebug'
