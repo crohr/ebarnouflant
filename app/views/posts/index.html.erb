@@ -1,0 +1,6 @@
+<%= content_tag_for :div, @posts, class: "post-excerpt" do |post| %>
+  <%= render post %>
+  <%= content_tag :div, class: "view-more" do %>
+    <%= link_to "View more", post %>
+  <% end %>
+<% end %>

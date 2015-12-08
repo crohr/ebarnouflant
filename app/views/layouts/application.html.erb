@@ -6,8 +6,11 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
+  <div id="header">
+    <div class="site-title"><%= link_to "Ebarnouflant", root_path %></div>
+  </div>
+  <div id="layout">
+    <%= yield %>
+  </div>
 </body>
 </html>

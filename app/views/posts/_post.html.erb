@@ -1,0 +1,9 @@
+<div class="post">
+  <% cache post do %>
+    <%= content_tag :h1, link_to(post.title, post) %>
+    <%= content_tag :p, class: "text-muted" do %>
+      <%= content_tag :span, post.published_at.httpdate %>
+    <% end %>
+    <%= content_tag :div, raw(post.content), class: "markdown-body" %>
+  <% end %>
+</div>

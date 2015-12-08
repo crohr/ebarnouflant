@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  post 'ping', to: "hooks#ping"
-  root to: "blog#index"
-  get ':permalink', to: "blog#post"
+  root to: "posts#index"
+  resources :posts, only: [:index, :show]
 end

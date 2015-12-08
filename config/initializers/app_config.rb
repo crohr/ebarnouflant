@@ -1,2 +1,3 @@
 AppConfig = OpenStruct.new
-AppConfig.webhook_token = ENV.fetch('WEBHOOK_TOKEN')
+AppConfig.github_repo = ENV.fetch('GITHUB_REPO')
+AppConfig.cache_reset_token = ENV.fetch('CACHE_RESET_TOKEN') { "secret" }

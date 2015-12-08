@@ -10,6 +10,47 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
+ *= require normalize
+ *= require github-markdown
  *= require_self
  */
+
+body {
+  max-width: 760px;
+  margin: 0 auto;
+  margin-top: 10px;
+  line-height: 1.5;
+  font-family: helvetica neue, sans-serif;
+}
+
+#header {
+  border-bottom: 4px solid #222;
+  text-transform: uppercase;
+  font-style: italic;
+  text-align: right;
+}
+
+#header .site-title {
+  font-size: 2em;
+  font-weight: 200;
+}
+.site-title a {
+  text-decoration: none;
+  color: inherit;
+}
+
+h1 {
+  line-height: 1.1;
+}
+.post-full h1 a, .post-excerpt h1 a {
+  text-decoration: none;
+  color: inherit;
+}
+.text-muted {
+  color: #c0c0c0;
+  font-size: 80%;
+}
+.view-more {
+  margin-top: 1em;
+  text-align: right;
+}
