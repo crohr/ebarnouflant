@@ -12,5 +12,6 @@
   <div id="layout">
     <%= yield %>
   </div>
+  <%= render "shared/ga", google_analytics_id: AppConfig.google_analytics_id unless AppConfig.google_analytics_id.blank? %>
 </body>
 </html>

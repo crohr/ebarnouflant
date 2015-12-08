@@ -46,6 +46,11 @@ h1 {
   text-decoration: none;
   color: inherit;
 }
+
+.post-excerpt {
+  margin-bottom: 5em;
+}
+
 .text-muted {
   color: #c0c0c0;
   font-size: 80%;
@@ -53,4 +58,11 @@ h1 {
 .view-more {
   margin-top: 1em;
   text-align: right;
+}
+
+@media (max-width: 800px) {
+  body {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
 }
