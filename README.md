@@ -12,7 +12,9 @@ So I figured, why not write blog posts as Github issues, and have a small blog e
 
 ## How it works
 
-1. You sign in to your blog app using your Github credentials
+1. Deploy the app using the Heroku button
+1. Add a webhook to your repo that points to <http://your-app.com/ping>
 1. You write stuff in Github issues.
 1. When you're ready to publish, you apply the `published` label.
 1. The app then receives a webhook event, and publishes your article, using the Github markdown API to render the issue as HTML.
+1. Article content is cached in whatever Rails cache store you're using.
