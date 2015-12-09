@@ -17,6 +17,8 @@
 
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= csrf_meta_tags %>
+
+  <%= render "shared/ga", google_analytics_id: AppConfig.google_analytics_id unless AppConfig.google_analytics_id.blank? %>
 </head>
 <body>
   <div id="header">
@@ -25,6 +27,5 @@
   <div id="content">
     <%= yield %>
   </div>
-  <%= render "shared/ga", google_analytics_id: AppConfig.google_analytics_id unless AppConfig.google_analytics_id.blank? %>
 </body>
 </html>
