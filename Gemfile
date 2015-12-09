@@ -6,6 +6,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'octokit'
 gem 'dotenv-rails'
 gem 'dalli'
+gem 'puma'
 
 group :development, :test do
   gem 'byebug'

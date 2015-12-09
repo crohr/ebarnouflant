@@ -69,6 +69,7 @@ GEM
       mini_portile2 (~> 2.0.0.rc2)
     octokit (2.7.2)
       sawyer (~> 0.5.2)
+    puma (2.15.3)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -136,6 +137,7 @@ DEPENDENCIES
   dalli
   dotenv-rails
   octokit
+  puma
   rails (= 4.2.1)
   sass-rails (~> 5.0)
   uglifier (>= 1.3.0)
