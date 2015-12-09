@@ -5,7 +5,7 @@ class Post
   attr_accessor :id, :title, :body, :published_at, :updated_at, :comments_count, :comments_url
 
   def self.cache_params(opts = {})
-    {expires_in: 15.minutes, race_condition_ttl: 10}.merge(opts)
+    {expires_in: 15.minutes, race_condition_ttl: 10}.merge(opts).tap {|v| Rails.logger.info v.inspect}
   end
 
   def self.list(opts = {})
