@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+ <title><%= AppConfig.site_title %></title>
+ <%= content_tag :link, "", href: feed_url(format: :xml), rel: "self" %>
+ <%= content_tag :link, "", href: root_url %>
+ <%= content_tag :updated, @posts.first.updated_at.iso8601 if @posts.any? %>
+ <%= content_tag :id, AppConfig.site_url %>
+ <%= content_tag :author do %>
+   <%= content_tag :name, AppConfig.site_author %>
+  <% end %> 
+
+ <% @posts.each do |post| %>
+ <entry>
+   <%= content_tag :title, post.title %>
+   <%= content_tag :link, "", href: post_url(post) %>
+   <%= content_tag :updated, post.updated_at.iso8601 %>
+   <%= content_tag :id, post_url(post.id) %>
+   <%= content_tag :content, type: "html" do %>
+      <%= post.content %>
+   <% end %>
+ </entry>
+ <% end %>
+
+</feed>

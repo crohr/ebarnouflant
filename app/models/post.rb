@@ -4,6 +4,22 @@ class Post
   include ActiveModel::Conversion
   attr_accessor :id, :title, :body, :published_at, :updated_at, :comments_count, :comments_url
 
+  def self.retrieve(opts = {})
+    force = opts.delete(:force)
+    repo = opts.delete(:repo)
+    opts = {state: "closed", labels: "published", sort: "created", default: "desc", per_page: 10, page: 1}.merge(opts)
+    cache_params = {expires_in: 15.minutes, race_condition_ttl: 10}.merge(force: !!force)
+
+    Rails.cache.fetch([repo, :issues, opts], cache_params) do
+      Rails.logger.info "refreshing issues of #{repo} for page #{opts[:page]}"
+      Octokit.list_issues(repo, opts).map do |issue|
+        # refresh the corresponding issue's cache while we're at it
+        Rails.cache.write(issue[:number], issue.to_attrs, cache_params)
+        issue.to_attrs
+      end
+    end.map{|issue| Post.load_from(issue)}
+  end
+
   def self.load_from(issue)
     new(
       id: issue[:number],
