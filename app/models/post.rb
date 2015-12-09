@@ -2,7 +2,7 @@ class Post
   extend ActiveModel::Naming
   include ActiveModel::Model
   include ActiveModel::Conversion
-  attr_accessor :id, :title, :body, :published_at, :updated_at
+  attr_accessor :id, :title, :body, :published_at, :updated_at, :comments_count, :comments_url
 
   def self.load_from(issue)
     new(
@@ -10,12 +10,18 @@ class Post
       title: issue[:title],
       body: issue[:body],
       published_at: issue[:closed_at],
-      updated_at: issue[:updated_at]
+      updated_at: issue[:updated_at],
+      comments_count: issue[:comments].to_i,
+      comments_url: issue[:html_url]
     )
   end
 
   def persisted?
     true
+  end
+
+  def excerpt
+    @excerpt ||= body.split("\n").first
   end
 
   def content

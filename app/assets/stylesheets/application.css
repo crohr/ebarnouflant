@@ -51,6 +51,10 @@ h1 {
   margin-bottom: 5em;
 }
 
+.post-updated-at, .post-comments-link {
+  margin-left: 10px;
+}
+
 .text-muted {
   color: #c0c0c0;
   font-size: 80%;
@@ -64,5 +68,10 @@ h1 {
   body {
     margin-left: 20px;
     margin-right: 20px;
+  }
+
+  .post-updated-at, .post-comments-link {
+    margin-left: 0;
+    display: block;
   }
 }

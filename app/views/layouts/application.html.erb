@@ -1,15 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Ebarnouflant</title>
+  <!-- <meta charset="utf&#45;8"> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <%= content_tag :title, AppConfig.site_title %>
+  <%= content_tag :meta, nil, name: "name", itemprop: "name", content: AppConfig.site_title %>
+  <%= content_tag :meta, nil, name: "twitter:site", content: AppConfig.site_title %>
+  <%= content_tag :meta, nil, name: "twitter:title", content: @post.title if @post %>
+  <%= content_tag :meta, nil, name: "twitter:description", content: @post.excerpt if @post %>
+  <%= content_tag :meta, nil, property: "og:site_name", content: AppConfig.site_title %>
+  <%= content_tag :meta, nil, property: "og:title", content: @post.title if @post %>
+  <%= content_tag :meta, nil, property: "og:url", content: post_url(@post) if @post %>
+  <%= content_tag :meta, nil, property: "og:description", content: @post.excerpt if @post %>
+
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
   <div id="header">
-    <div class="site-title"><%= link_to "Ebarnouflant", root_path %></div>
+    <div class="site-title"><%= link_to AppConfig.site_title, root_path %></div>
   </div>
-  <div id="layout">
+  <div id="content">
     <%= yield %>
   </div>
   <%= render "shared/ga", google_analytics_id: AppConfig.google_analytics_id unless AppConfig.google_analytics_id.blank? %>
