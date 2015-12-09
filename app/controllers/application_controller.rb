@@ -16,6 +16,10 @@ class ApplicationController < ActionController::Base
     end
 
     def current_repo
-      AppConfig.github_repo
+      if request.subdomain
+        request.subdomain.split(".", 2).join("/")
+      else
+        AppConfig.github_repo
+      end
     end
 end
