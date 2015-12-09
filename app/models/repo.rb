@@ -17,7 +17,7 @@ class Repo
   def self.find(repo_full_name)
     result = Rails.cache.fetch(repo_full_name, expires_in: 10.minutes) do
       if Octokit.repository?(repo_full_name)
-        Octokit.repository(repo_full_name)
+        Octokit.repository(repo_full_name).to_attrs
       end
     end
     return nil if result.nil?
