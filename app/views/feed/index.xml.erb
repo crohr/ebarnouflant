@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
- <title><%= AppConfig.site_title %></title>
+ <title><%= current_repo.name %></title>
  <%= content_tag :link, "", href: feed_url, rel: "self" %>
  <%= content_tag :link, "", href: root_url %>
  <%= content_tag :updated, @posts.first.updated_at.iso8601 if @posts.any? %>
- <%= content_tag :id, AppConfig.site_url %>
+ <%= content_tag :id, current_repo.url %>
  <%= content_tag :author do %>
    <%= content_tag :name, AppConfig.site_author %>
-  <% end %> 
+  <% end if AppConfig.site_author %> 
 
  <% @posts.each do |post| %>
  <entry>

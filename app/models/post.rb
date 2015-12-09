@@ -3,6 +3,7 @@ class Post
   include ActiveModel::Model
   include ActiveModel::Conversion
   attr_accessor :id, :title, :body, :published_at, :updated_at, :comments_count, :comments_url
+  attr_accessor :author_login, :author_avatar_url, :author_url
 
   def self.cache_params(opts = {})
     {expires_in: 15.minutes, race_condition_ttl: 10}.merge(opts)
@@ -41,7 +42,10 @@ class Post
       published_at: issue[:closed_at],
       updated_at: issue[:updated_at],
       comments_count: issue[:comments].to_i,
-      comments_url: issue[:html_url]
+      comments_url: issue[:html_url],
+      author_login: issue[:user][:login],
+      author_url: issue[:user][:html_url],
+      author_avatar_url: issue[:user][:avatar_url]
     )
   end
 

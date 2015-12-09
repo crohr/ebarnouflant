@@ -51,8 +51,13 @@ h1 {
   margin-bottom: 5em;
 }
 
-.post-updated-at, .post-comments-link {
+.post-published-at, .post-updated-at, .post-comments-link {
   margin-left: 10px;
+}
+
+.post-author img {
+  margin-right: 10px;
+  vertical-align: middle;
 }
 
 .text-muted {
@@ -78,7 +83,7 @@ h1 {
     margin: 0 auto;
     display: block;
   }
-  .post-updated-at, .post-comments-link {
+  .post-published-at, .post-updated-at, .post-comments-link {
     margin-left: 0;
     display: block;
   }

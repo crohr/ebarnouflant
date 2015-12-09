@@ -4,14 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <%= tag :link, href: feed_url, rel: "alternate", title: AppConfig.site_title, type: "application/atom+xml" %>
-  <%= content_tag :title, @post.try(:title) || AppConfig.site_title %>
-  <%= tag :meta, name: "name", itemprop: "name", content: AppConfig.site_title %>
+  <%= tag :link, href: feed_url, rel: "alternate", title: current_repo.name, type: "application/atom+xml" %>
+  <%= content_tag :title, @post.try(:title) || current_repo.name %>
+  <%= tag :meta, name: "name", itemprop: "name", content: current_repo.name %>
   <%= tag :meta, name: "twitter:card", content: "summary" %>
   <%= tag :meta, name: "twitter:title", content: @post.title if @post %>
-  <%= tag :meta, name: "twitter:creator", content: AppConfig.twitter_username %>
   <%= tag :meta, name: "twitter:description", content: @post.excerpt if @post %>
-  <%= tag :meta, property: "og:site_name", content: AppConfig.site_title %>
+  <%= tag :meta, property: "og:site_name", content: current_repo.name %>
   <%= tag :meta, property: "og:title", content: @post.title if @post %>
   <%= tag :meta, property: "og:url", content: post_url(@post) if @post %>
   <%= tag :meta, property: "og:description", content: @post.excerpt if @post %>
@@ -21,7 +20,7 @@
 </head>
 <body>
   <div id="header">
-    <div class="site-title"><%= link_to AppConfig.site_title, root_path %></div>
+    <div class="site-title"><%= link_to current_repo.name, root_path %></div>
   </div>
   <div id="content">
     <%= yield %>

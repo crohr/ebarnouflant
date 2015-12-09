@@ -2,6 +2,10 @@
   <% cache [post.id, post.updated_at] do %>
     <%= content_tag :h1, link_to(post.title, post) %>
     <%= content_tag :p, class: "text-muted" do %>
+      <%= content_tag :span, class: "post-author" do %>
+        <%= image_tag post.author_avatar_url, width: 20 %>
+        <%= link_to ["@", post.author_login].join, post.author_url %>
+      <% end %>
       <%= content_tag :span, post.published_at.httpdate, class: "post-published-at" %>
       <%= content_tag :span, "Last updated: #{post.updated_at.httpdate}", class: "post-updated-at"if post.updated_at > post.published_at %>
       <%= link_to "#{post.comments_count} #{"comment".pluralize(post.comments_count)}", post.comments_url, class: "post-comments-link" %>
