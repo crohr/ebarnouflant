@@ -6,12 +6,7 @@ class PostsController < ApplicationController
 
   def show
     issue_number, slug = params[:id].split("-", 2)
-    @post = Post.load_from(
-      Rails.cache.fetch([current_repo, issue_number], cache_params) do
-        Rails.logger.info "refreshing issue #{current_repo}##{issue_number}..."
-        Octokit.issue(current_repo, issue_number).to_attrs
-      end
-    )
+    @post = Post.find(issue_number, repo: current_repo, force: can_refresh?)
   end
 
 end
