@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
  <title><%= AppConfig.site_title %></title>
- <%= content_tag :link, "", href: feed_url(format: :xml), rel: "self" %>
+ <%= content_tag :link, "", href: feed_url, rel: "self" %>
  <%= content_tag :link, "", href: root_url %>
  <%= content_tag :updated, @posts.first.updated_at.iso8601 if @posts.any? %>
  <%= content_tag :id, AppConfig.site_url %>

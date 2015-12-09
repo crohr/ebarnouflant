@@ -4,7 +4,7 @@
   <!-- <meta charset="utf&#45;8"> -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <%= content_tag :link, "", href: feed_url(format: :xml), rel: "alternate", title: AppConfig.site_title, type: "application/atom+xml" %>
+  <%= content_tag :link, "", href: feed_url, rel: "alternate", title: AppConfig.site_title, type: "application/atom+xml" %>
   <%= content_tag :title, AppConfig.site_title %>
   <%= content_tag :meta, nil, name: "name", itemprop: "name", content: AppConfig.site_title %>
   <%= content_tag :meta, nil, name: "twitter:site", content: AppConfig.site_title %>

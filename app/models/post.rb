@@ -8,7 +8,7 @@ class Post
     {expires_in: 15.minutes, race_condition_ttl: 10}.merge(opts)
   end
 
-  def self.retrieve(opts = {})
+  def self.list(opts = {})
     force = opts.delete(:force)
     repo = opts.delete(:repo)
     opts = {state: "closed", labels: "published", sort: "created", default: "desc", per_page: 10, page: 1}.merge(opts)
@@ -56,7 +56,7 @@ class Post
   def content
     @content ||= begin
       Rails.cache.fetch(Digest::SHA256.digest(body), race_condition_ttl: 10) do
-        Octokit.markdown(body, gfm: true)
+        Octokit.markdown(body, gfm: true).force_encoding(Encoding::UTF_8)
       end
     end
   end
