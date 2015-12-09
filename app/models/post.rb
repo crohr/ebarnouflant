@@ -55,10 +55,14 @@ class Post
 
   def content
     @content ||= begin
-      Rails.cache.fetch(Digest::SHA256.digest(body), race_condition_ttl: 10) do
+      Rails.cache.fetch(fingerprint, race_condition_ttl: 10) do
         Octokit.markdown(body, gfm: true).force_encoding(Encoding::UTF_8)
       end
     end
+  end
+
+  def fingerprint
+    Digest::SHA256.digest(body)
   end
 
   def to_param
