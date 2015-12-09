@@ -5,7 +5,7 @@ class Post
   attr_accessor :id, :title, :body, :published_at, :updated_at, :comments_count, :comments_url
 
   def self.cache_params(opts = {})
-    {expires_in: 15.minutes, race_condition_ttl: 10}.merge(opts).tap {|v| Rails.logger.info v.inspect}
+    {expires_in: 15.minutes, race_condition_ttl: 10}.merge(opts)
   end
 
   def self.list(opts = {})
@@ -13,7 +13,7 @@ class Post
     repo = opts.delete(:repo)
     opts = {state: "closed", labels: "published", sort: "created", default: "desc", per_page: 10, page: 1}.merge(opts)
 
-    Rails.cache.fetch([repo, :issues, opts], cache_params(force: !!force)) do
+    Rails.cache.fetch([repo, :issues, opts].join, cache_params(force: !!force)) do
       Rails.logger.info "refreshing issues of #{repo} for page #{opts[:page]}"
       Octokit.list_issues(repo, opts).map do |issue|
         # refresh the corresponding issue's cache while we're at it
@@ -24,9 +24,9 @@ class Post
   end
 
   def self.find(id, opts = {})
-    repo = opts[:repo]
+    repo = opts.delete(:repo)
     load_from(
-      Rails.cache.fetch([repo, id], cache_params(force: !!opts.delete(:force))) do
+      Rails.cache.fetch([repo, id].join, cache_params(opts)) do
         Rails.logger.info "refreshing issue #{repo}##{id}..."
         Octokit.issue(repo, id).to_attrs
       end

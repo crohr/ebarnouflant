@@ -5,7 +5,6 @@ class PostsController < ApplicationController
   end
 
   def show
-    Rails.logger.info [can_refresh?, request.headers['Cache-Control']].inspect
     issue_number, slug = params[:id].split("-", 2)
     @post = Post.find(issue_number, repo: current_repo, force: can_refresh?)
   end

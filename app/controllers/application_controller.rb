@@ -5,12 +5,14 @@ class ApplicationController < ActionController::Base
 
   protected
     def can_refresh?
-      return false unless (request.headers['Cache-Control'] || "").include?('no-cache')
-      throttled = true
-      Rails.cache.fetch(:cache_reset, expires_in: 15.seconds, race_condition_ttl: 10) do
-        throttled = false
+      @can_refresh ||= begin
+        return false unless (request.headers['Cache-Control'] || "").include?('no-cache')
+        throttled = true
+        Rails.cache.fetch(:cache_reset, expires_in: 15.seconds, race_condition_ttl: 10) do
+          throttled = false
+        end
+        !throttled
       end
-      !throttled
     end
 
     def current_repo
