@@ -16,6 +16,7 @@
   <%= tag :meta, property: "og:description", content: @post.excerpt if @post %>
 
   <%= stylesheet_link_tag    'application', media: 'all' %>
+  <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
   <%= csrf_meta_tags %>
 
   <%= render "shared/ga", google_analytics_id: AppConfig.google_analytics_id unless AppConfig.google_analytics_id.blank? %>
