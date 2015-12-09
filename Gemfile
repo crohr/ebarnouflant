@@ -7,6 +7,7 @@ gem 'octokit'
 gem 'dotenv-rails'
 gem 'dalli'
 gem 'puma'
+gem 'rails_12factor', group: :production
 
 group :development, :test do
   gem 'byebug'
