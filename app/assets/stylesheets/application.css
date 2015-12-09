@@ -64,12 +64,20 @@ h1 {
   text-align: right;
 }
 
+.markdown-body img {
+  float: right;
+}
+
 @media (max-width: 800px) {
   body {
     margin-left: 20px;
     margin-right: 20px;
   }
-
+  .markdown-body img {
+    float: none;
+    margin: 0 auto;
+    display: block;
+  }
   .post-updated-at, .post-comments-link {
     margin-left: 0;
     display: block;
