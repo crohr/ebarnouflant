@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
     end
 
     def find_repo!
-      if request.subdomain.blank?
+      if request.subdomain.blank? || request.subdomain.split(".").length != 2
         @current_repo = Repo.global(AppConfig)
       else
         repo = Repo.find(request.subdomain.split(".", 2).join("/"))
