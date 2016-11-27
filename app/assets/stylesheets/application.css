@@ -42,6 +42,16 @@ body {
 h1 {
   line-height: 1.1;
 }
+
+.post {
+  position: relative;
+}
+
+.post-header {
+  font-size: 80%;
+  margin-bottom: 1rem;
+}
+
 .post-full h1 a, .post-excerpt h1 a {
   text-decoration: none;
   color: inherit;
@@ -53,6 +63,23 @@ h1 {
 
 .post-published-at, .post-updated-at, .post-comments-link {
   margin-left: 10px;
+}
+
+.post-label-list {
+  padding: 0;
+  list-style-type: none;
+  display: inline;
+  margin-left: 10px;
+}
+
+.post-label-list .post-label {
+  display: inline;
+  color: #fff;
+  padding: 3px 6px;
+}
+
+.post-author {
+  display: inline;
 }
 
 .post-author img {

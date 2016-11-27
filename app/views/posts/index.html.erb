@@ -4,3 +4,11 @@
     <%= link_to "permalink", post %>
   <% end %>
 <% end %>
+<%= content_tag :div, class: "pagination" do %>
+    <% if page > 1 %>
+      <%= link_to "prev", url_for(p: page - 1) %>
+  <% end %>
+  <% if @posts.size == per_page %>
+      <%= link_to "next", url_for(p: page + 1) %>
+  <% end %>
+<% end %>

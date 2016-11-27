@@ -1,11 +1,18 @@
 <div class="post">
   <% cache [post.id, post.updated_at] do %>
     <%= content_tag :h1, link_to(post.title, post) %>
-    <%= content_tag :p, class: "text-muted" do %>
-      <%= content_tag :span, class: "post-author" do %>
+    <%= content_tag :div, class: "post-header text-muted" do %>
+      <%= content_tag :div, class: "post-author" do %>
         <%= image_tag post.author_avatar_url, width: 20 %>
         <%= link_to ["@", post.author_login].join, post.author_url %>
       <% end %>
+
+      <%= content_tag :ul, class: "post-label-list" do %>
+        <% post.labels.each do |(label_name, label_color)| %>
+          <%= content_tag :li, label_name, class: "post-label", style: "background-color:##{label_color}" %>
+        <% end %>
+      <% end if post.labels.any? %>
+
       <%= content_tag :span, post.published_at.httpdate, class: "post-published-at" if post.published_at %>
       <%= content_tag :span, "Last updated: #{post.updated_at.httpdate}", class: "post-updated-at"if post.published_at && post.updated_at > post.published_at %>
       <%= link_to "#{post.comments_count} #{"comment".pluralize(post.comments_count)}", post.comments_url, class: "post-comments-link" %>

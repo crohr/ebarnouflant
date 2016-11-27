@@ -5,6 +5,7 @@ AppConfig.google_analytics_id = ENV.fetch('GOOGLE_ANALYTICS_ID') { nil }
 AppConfig.site_title = ENV.fetch('SITE_TITLE') { "My Blog" }
 AppConfig.site_author = ENV.fetch('SITE_AUTHOR') { "John Doe" }
 AppConfig.site_url = ENV.fetch('SITE_URL') { "http://example.com/" }
+AppConfig.site_posts_per_page = ENV.fetch('SITE_POSTS_PER_PAGE') { 10 }.to_i
 AppConfig.twitter_username = ENV.fetch('TWITTER_USERNAME') { "@crohr" }
 Octokit.client_id = ENV.fetch('GITHUB_CLIENT_ID') { nil }
 Octokit.client_secret = ENV.fetch('GITHUB_CLIENT_SECRET') { nil }

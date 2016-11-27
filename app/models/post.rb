@@ -1,9 +1,20 @@
 class Post
+  HIDDEN_LABELS = ["published"]
+
   extend ActiveModel::Naming
   include ActiveModel::Model
   include ActiveModel::Conversion
-  attr_accessor :id, :title, :body, :published_at, :updated_at, :comments_count, :comments_url
-  attr_accessor :author_login, :author_avatar_url, :author_url
+  attr_accessor :id
+  attr_accessor :title
+  attr_accessor :body
+  attr_accessor :published_at
+  attr_accessor :updated_at
+  attr_accessor :comments_count
+  attr_accessor :comments_url
+  attr_accessor :labels
+  attr_accessor :author_login
+  attr_accessor :author_avatar_url
+  attr_accessor :author_url
 
   def self.cache_params(opts = {})
     {expires_in: 15.minutes, race_condition_ttl: 10}.merge(opts)
@@ -39,13 +50,16 @@ class Post
       id: issue[:number],
       title: issue[:title],
       body: issue[:body],
-      published_at: issue[:closed_at],
-      updated_at: issue[:updated_at],
+      published_at: issue[:milestone] ? issue[:milestone][:due_on] : issue[:closed_at],
+      updated_at: issue[:milestone] ? issue[:milestone][:due_on] : issue[:updated_at],
       comments_count: issue[:comments].to_i,
       comments_url: issue[:html_url],
       author_login: issue[:user][:login],
       author_url: issue[:user][:html_url],
-      author_avatar_url: issue[:user][:avatar_url]
+      author_avatar_url: issue[:user][:avatar_url],
+      labels: issue[:labels].map(&:to_attrs).reject do |label|
+        HIDDEN_LABELS.include?(label[:name])
+      end.map{|label| [label[:name], label[:color]]},
     )
   end
 
