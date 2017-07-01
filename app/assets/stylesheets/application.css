@@ -97,7 +97,8 @@ h1 {
 }
 
 .markdown-body img {
-  float: right;
+  display: block;
+  margin: 1em auto;
 }
 
 @media (max-width: 800px) {
